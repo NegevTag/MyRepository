@@ -28,6 +28,7 @@ public class Groot extends TimedRobot implements RobotMap {
   public static SpeedController m_elevatorMotor;
   public Joystick m_elevatorJoystick;
   public static Elevator m_elevator;
+  public static Chassis m_Chassis;
 
   /**
    * This function is run when the robot is first started up and should be used

@@ -42,6 +42,7 @@ public class Elevator extends SubsystemBase implements RobotMap {
         m_elevatorMotor = new SpeedControllerGroup(new WPI_VictorSPX(MotorPorts.elevator1),
                 new WPI_VictorSPX(MotorPorts.elevator2));
         m_currentSpeed = 0;
+        setDefaultCommand(new ElevatorJoystickSpeedControl());
 
     }
 
@@ -52,7 +53,7 @@ public class Elevator extends SubsystemBase implements RobotMap {
      * @return true if the elevator were moved up(0< speed =>1)
      */
     public boolean moveElevatorUp(double speed) {
-        if (speed > 0 && speed <= 1.0 - STOP_SPEED) {
+        if (speed > 0 && speed <= 1.0 ) {
             m_elevatorMotor.set(STOP_SPEED + (speed * (1.0 - STOP_SPEED)));
             m_currentSpeed = STOP_SPEED + (speed * (1.0 - STOP_SPEED));
             return true;
@@ -84,7 +85,7 @@ public class Elevator extends SubsystemBase implements RobotMap {
      * @return true if the speed sets (speed between 1 and -1)
      */
     public boolean setSpeed(double speed) {
-        if (speed <= -1 && speed <= 0) {
+        if (speed >= -1 && speed <= 1) {
             m_elevatorMotor.set(speed);
             m_currentSpeed = speed;
             return true;
@@ -110,7 +111,7 @@ public class Elevator extends SubsystemBase implements RobotMap {
     }
 
     public boolean moveToHeight(double height, double speed) {
-        if (speed > 0 && speed <= 1&&height>=0&&height<=MAXIMUM_HEIGHT) {
+        if (speed > 0 && speed <= 1 && height >= 0 && height <= MAXIMUM_HEIGHT) {
             if (getDistance() < height) {
                 moveElevatorUp(speed);
                 while (getDistance() < height) {
@@ -120,7 +121,7 @@ public class Elevator extends SubsystemBase implements RobotMap {
                 moveElevatorDown(speed);
                 while (getDistance() > height) {
                 }
-            }else{
+            } else {
                 stop();
             }
             return true;
@@ -140,11 +141,5 @@ public class Elevator extends SubsystemBase implements RobotMap {
     protected double toCM(double voltege) {
         return voltege * 2;
     }
-
-    @Override
-    protected void initDefaultCommand() {
-        setDefaultCommand(new ElevatorJoystickSpeedControl());
-    }
-    
 
 }

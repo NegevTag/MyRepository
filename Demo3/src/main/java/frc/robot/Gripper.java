@@ -133,6 +133,10 @@ public abstract class Gripper implements RobotMap {
      * 
      * @return the distance from the ball to the Gripper
      */
-    public abstract double getCargoDistance();
+    public  double getCargoDistance(){
+       //TODO:finish the method
+        return 1;
+    }
+
 
 }
