@@ -14,12 +14,13 @@ public class MoveGenericSubsystem {
     private Supplier<Double> m_distanceSupplier;
     private GenericSubsystem m_subsystem;
 
-    public void moveToDistance(double distance, double speed) {
-
+    public boolean moveToDistance(double distance, double speed) {
+        m_subsystem.setSpeed(speed);
         while (m_distanceSupplier.get() < distance && m_subsystem.canMove()) {
-            m_subsystem.setSpeed(speed);
+
         }
         m_subsystem.setSpeed(0);
+        return m_subsystem.canMove();
 
     }
 
