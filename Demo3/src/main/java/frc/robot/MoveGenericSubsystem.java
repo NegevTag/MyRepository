@@ -13,7 +13,7 @@ public class MoveGenericSubsystem extends CommandBase {
         m_subsystem = subsystem;
         addRequirements(subsystem);
     }
-
+    
     private Supplier<Double> m_speedSupplier;
     private GenericSubsystem m_subsystem;
    
@@ -26,7 +26,7 @@ public class MoveGenericSubsystem extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return m_subsystem.canMove();
+        return !m_subsystem.canMove();
     }
 
     @Override
