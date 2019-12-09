@@ -8,7 +8,7 @@ import frc.wpilib2020.framework.CommandBase;
  * MoveGenericSubsystem
  */
 public class MoveGenericSubsystem extends CommandBase {
-    public MoveGenericSubsystem(Supplier distanceSupplier, GenericSubsystem subsystem, double distance, double speed) {
+    public MoveGenericSubsystem(Supplier<Double> distanceSupplier, GenericSubsystem subsystem, double distance, double speed) {
         m_speedSupplier = distanceSupplier;
         m_subsystem = subsystem;
         addRequirements(subsystem);
