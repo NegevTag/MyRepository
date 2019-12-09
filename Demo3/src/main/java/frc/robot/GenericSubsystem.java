@@ -4,11 +4,12 @@ import java.util.function.Predicate;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.SpeedController;
+import frc.wpilib2020.framework.SubsystemBase;
 
 /**
  * GenericSubsystem
  */
-public class GenericSubsystem {
+public class GenericSubsystem extends SubsystemBase {
     private SpeedController m_motor;
     private AnalogInput m_distanceSensor;
     private Predicate<Double> m_moveAbilityTester;

@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import edu.wpi.first.wpilibj.Preferences;
 
 /**
- * DashboardConstants
+ * DashboardConstants 
  */
 public class DashboardConstants {
     public Supplier addDouble(String key, double defultValue) {
