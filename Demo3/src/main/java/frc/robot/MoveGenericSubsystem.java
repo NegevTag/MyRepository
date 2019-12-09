@@ -9,27 +9,24 @@ import frc.wpilib2020.framework.CommandBase;
  */
 public class MoveGenericSubsystem extends CommandBase {
     public MoveGenericSubsystem(Supplier distanceSupplier, GenericSubsystem subsystem, double distance, double speed) {
-        m_distanceSupplier = distanceSupplier;
+        m_speedSupplier = distanceSupplier;
         m_subsystem = subsystem;
-        m_distance = distance;
-        speed = m_speed;
         addRequirements(subsystem);
     }
 
-    private Supplier<Double> m_distanceSupplier;
+    private Supplier<Double> m_speedSupplier;
     private GenericSubsystem m_subsystem;
-    private double m_distance;
-    private double m_speed;
+   
 
     @Override
     public void initialize() {
-        m_subsystem.setSpeed(m_speed);
+        m_subsystem.setSpeed(m_speedSupplier.get());
     }
 
 
     @Override
     public boolean isFinished() {
-        return m_distanceSupplier.get() < m_distance && m_subsystem.canMove();
+        return m_subsystem.canMove();
     }
 
     @Override
