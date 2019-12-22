@@ -21,7 +21,7 @@ public class GenericSubsystem extends SubsystemBase {
         m_moveAbilityTester = moveAbilityTester;
         m_toCm = toCm;
     }
-    //TODO: stop when test returns false
+    
     public boolean setSpeed(double speed) {
         if(m_moveAbilityTester.test(m_toCm.convert(m_distanceSensor.getVoltage()))){  
         m_motor.set(speed);
@@ -29,6 +29,9 @@ public class GenericSubsystem extends SubsystemBase {
         }else{
             return false;
         }
+    }
+    public double getDistance(){
+        return m_toCm.convert(m_distanceSensor.getVoltage());
     }
     public boolean canMove(){
         return m_moveAbilityTester.test(m_toCm.convert(m_distanceSensor.getVoltage()));
